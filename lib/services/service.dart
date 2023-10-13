@@ -62,29 +62,6 @@ class SiapApiService {
     return null;
   }
 
-  // Future<List<Teknisi>> getTeknisi(
-  //     String gedung, String kodebagian, String token) async {
-  //   Map<String, String> header = {
-  //     'Content-type': 'application/json',
-  //     'Accept': 'application/json',
-  //     'Authorization': 'Bearer $token'
-  //   };
-  //   var respond = await client
-  //       .get(Uri.parse("$url/teknisi/$gedung/$kodebagian"), headers: header);
-  //   if (respond.statusCode == 200) {
-  //     var jsonData = jsonDecode(respond.body);
-  //     var jsonArray = jsonData['data'];
-  //     List<Teknisi> listteknisi = [];
-  //     for (var data in jsonArray) {
-  //       Teknisi teknisi =
-  //           Teknisi(nama: data['nama'], hp: data['hp'], pid: data['pid']);
-  //       listteknisi.add(teknisi);
-  //     }
-  //     return listteknisi;
-  //   }
-  //   return [];
-  // }
-
   Future<List<ModelPersonal>> getTeknisi(
       String gedung, String kodebagian, String token) async {
     Map<String, String> header = {
@@ -95,9 +72,10 @@ class SiapApiService {
     final respond = await client
         .get(Uri.parse("$url/teknisi/$gedung/$kodebagian"), headers: header);
     if (respond.statusCode == 200) {
-      List<dynamic> body = json.decode(respond.body);
+      print(respond.body);
+      List body = json.decode(respond.body)['data'];
       List<ModelPersonal> list =
-          body.map((dynamic item) => ModelPersonal.fromJson(item)).toList();
+          body.map((item) => ModelPersonal.fromJson(item)).toList();
       return list;
     } else {
       throw 'Error get Lokasi';

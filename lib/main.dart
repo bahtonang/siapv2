@@ -24,18 +24,18 @@ class MyApp extends StatelessWidget {
         return LandingPage();
       },
       routes: [
-        // GoRoute(
-        //   path: 'mksewing/:gedung/:kodebagian/:pid/:token',
-        //   name: 'mksewing',
-        //   builder: (context, state) {
-        //     return MekanikSewing(
-        //       gedung: state.params['gedung'],
-        //       kodebagian: state.params['kodebagian'],
-        //       pid: state.params['pid'],
-        //       token: state.params['token'],
-        //     );
-        //   },
-        // ),
+        GoRoute(
+          path: 'mksewing/:gedung/:kodebagian/:pid/:token',
+          name: 'mksewing',
+          builder: (context, state) {
+            return MekanikSewing(
+              gedung: state.params['gedung'],
+              kodebagian: state.params['kodebagian'],
+              pid: state.params['pid'],
+              token: state.params['token'],
+            );
+          },
+        ),
         GoRoute(
           path: 'mytiket/:pid/:token',
           name: 'mytiket',
